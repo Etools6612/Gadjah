@@ -13,7 +13,7 @@ body{
     color:white;
 }
 
-/* ================= SIDEBAR ================= */
+/* SIDEBAR */
 .sidebar{
     position:fixed;
     left:0;
@@ -29,14 +29,12 @@ body{
     gap:50px;
 }
 
-/* MENU */
 .menu-item{
     display:flex;
     flex-direction:column;
     align-items:center;
     cursor:pointer;
     transition:0.3s;
-    position:relative;
 }
 
 .menu-item img{
@@ -53,18 +51,13 @@ body{
     font-size:14px;
 }
 
-/* ACTIVE HIGHLIGHT */
 .menu-item.active img{
     background:linear-gradient(45deg,#ff00cc,#00ffff);
     box-shadow:0 0 20px #ff00cc;
     transform:scale(1.1);
 }
 
-.menu-item:hover{
-    transform:scale(1.08);
-}
-
-/* ================= HEADER ================= */
+/* HEADER */
 .header{
     margin-left:180px;
     padding:30px;
@@ -91,13 +84,13 @@ body{
     font-weight:bold;
 }
 
-/* ================= CONTENT ================= */
+/* CONTENT */
 .content{
     margin-left:180px;
     padding:20px 30px;
 }
 
-/* ================= ANIMATED BORDER ================= */
+/* ANIMATED BORDER */
 .animated-border{
     position:relative;
     border-radius:20px;
@@ -110,14 +103,7 @@ body{
     inset:-2px;
     border-radius:22px;
     padding:2px;
-    background:linear-gradient(
-        45deg,
-        #ff00cc,
-        #3333ff,
-        #00ffff,
-        #ffcc00,
-        #ff00cc
-    );
+    background:linear-gradient(45deg,#ff00cc,#3333ff,#00ffff,#ffcc00,#ff00cc);
     background-size:400% 400%;
     animation:borderMove 6s linear infinite;
     -webkit-mask:
@@ -134,7 +120,7 @@ body{
     100%{background-position:0% 50%;}
 }
 
-/* ================= DISPLAY BOX ================= */
+/* DISPLAY BOX */
 .display-box{
     background:rgba(0,0,0,0.6);
     backdrop-filter: blur(15px);
@@ -142,19 +128,31 @@ body{
     border-radius:20px;
     max-width:600px;
     min-height:300px;
-    animation:fadeIn 0.4s ease;
-}
-
-.display-box h2{
-    margin-top:0;
 }
 
 .price{
     margin:10px 0;
-    font-size:16px;
 }
 
-/* ================= CONTACT ================= */
+/* BUTTON */
+.order-btn{
+    margin-top:20px;
+    padding:12px 20px;
+    border:none;
+    border-radius:10px;
+    cursor:pointer;
+    font-weight:bold;
+    background:linear-gradient(45deg,#ff00cc,#00ffff);
+    color:white;
+    transition:0.3s;
+}
+
+.order-btn:hover{
+    transform:scale(1.05);
+    box-shadow:0 0 15px #00ffff;
+}
+
+/* CONTACT */
 .contact{
     margin-top:40px;
     background:rgba(0,0,0,0.5);
@@ -171,15 +169,16 @@ body{
     padding:10px;
     border-radius:12px;
     background:rgba(255,255,255,0.05);
+    cursor:pointer;
+    transition:0.3s;
+}
+
+.contact-item:hover{
+    background:rgba(255,255,255,0.15);
 }
 
 .contact-item img{
     width:25px;
-}
-
-@keyframes fadeIn{
-    from{opacity:0; transform:translateY(15px);}
-    to{opacity:1; transform:translateY(0);}
 }
 </style>
 </head>
@@ -202,11 +201,6 @@ body{
         <span>TIKTOK</span>
     </div>
 
-    <div class="menu-item" onclick="showService('tool',this)">
-        <img src="https://cdn-icons-png.flaticon.com/512/3524/3524659.png">
-        <span>OTHER TOOL</span>
-    </div>
-
 </div>
 
 <div class="header">
@@ -216,36 +210,31 @@ body{
 
 <div class="content">
 
-    <div class="display-box animated-border" id="serviceBox">
-        <h2>Facebook Boost Limited</h2>
-        <div class="price">₱15 – 1k followers (hidden|bot)</div>
-        <div class="price">₱150 – 10k followers (hidden|bot)</div>
-        <div class="price">₱250 – 20k followers (hidden|bot)</div>
-        <div class="price">₱500 – 45k followers (hidden|bot)</div>
-    </div>
+    <div class="display-box animated-border" id="serviceBox"></div>
 
     <div class="contact animated-border">
         <h3>Contact Details</h3>
 
-        <div class="contact-item animated-border">
+        <div class="contact-item" onclick="window.open('https://t.me/shinthebooster')">
             <img src="https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg">
             Telegram: @shinthebooster
         </div>
 
-        <div class="contact-item animated-border">
+        <div class="contact-item" onclick="window.open('https://wa.me/639564900947')">
             <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg">
             WhatsApp: 09564900947
         </div>
 
-        <div class="contact-item animated-border">
+        <div class="contact-item" onclick="window.open('https://www.facebook.com/profile.php?id=61584963890912')">
             <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg">
             Main Facebook
         </div>
 
-        <div class="contact-item animated-border">
+        <div class="contact-item" onclick="window.open('https://www.facebook.com/profile.php?id=61586301187510')">
             <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg">
             Backup Facebook
         </div>
+
     </div>
 
 </div>
@@ -253,12 +242,10 @@ body{
 <script>
 function showService(type, element){
 
-    // Remove active sa lahat
     document.querySelectorAll('.menu-item').forEach(item=>{
         item.classList.remove('active');
     });
 
-    // Add active sa selected
     element.classList.add('active');
 
     const box = document.getElementById("serviceBox");
@@ -266,10 +253,13 @@ function showService(type, element){
     if(type === "fb"){
         box.innerHTML = `
         <h2>Facebook Boost Limited</h2>
-        <div class="price">₱15 – 1k followers (hidden|bot)</div>
-        <div class="price">₱150 – 10k followers (hidden|bot)</div>
-        <div class="price">₱250 – 20k followers (hidden|bot)</div>
-        <div class="price">₱500 – 45k followers (hidden|bot)</div>
+        <div class="price">₱15 – 1k followers</div>
+        <div class="price">₱150 – 10k followers</div>
+        <div class="price">₱250 – 20k followers</div>
+        <div class="price">₱500 – 45k followers</div>
+        <button class="order-btn" onclick="window.open('https://t.me/shinthebooster')">
+            Order via Telegram
+        </button>
         `;
     }
 
@@ -278,7 +268,9 @@ function showService(type, element){
         <h2>Instagram Boost</h2>
         <div class="price">₱20 – 1k followers</div>
         <div class="price">₱180 – 10k followers</div>
-        <div class="price">₱300 – 20k followers</div>
+        <button class="order-btn" onclick="window.open('https://t.me/shinthebooster')">
+            Order via Telegram
+        </button>
         `;
     }
 
@@ -287,19 +279,15 @@ function showService(type, element){
         <h2>TikTok Boost</h2>
         <div class="price">₱25 – 1k followers</div>
         <div class="price">₱200 – 10k followers</div>
-        <div class="price">₱400 – 25k followers</div>
-        `;
-    }
-
-    if(type === "tool"){
-        box.innerHTML = `
-        <h2>Other Tools</h2>
-        <div class="price">Auto React Tool</div>
-        <div class="price">Auto Follow Tool</div>
-        <div class="price">Comment Bot</div>
+        <button class="order-btn" onclick="window.open('https://t.me/shinthebooster')">
+            Order via Telegram
+        </button>
         `;
     }
 }
+
+// Default load
+showService('fb', document.querySelector('.menu-item'));
 </script>
 
 </body>
